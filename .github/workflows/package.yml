@@ -21,33 +21,33 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install zipfile36
-    # This is a bad solution, but it works for now...
+
     - name: Package mod
       run: |
         python -c "
-        import zipfile
-        import os
-        from zipfile import ZipFile
+import zipfile
+import os
+from zipfile import ZipFile
 
-        def get_mod_version():
-            with open('info.json', 'r') as f:
-                import json
-                return json.load(f)['version']
+def get_mod_version():
+    with open('GunfireReplacer/info.json', 'r') as f:
+        import json
+        return json.load(f)['version']
 
-        def zipdir(path, ziph):
-            for root, dirs, files in os.walk(path):
-                for file in files:
-                    ziph.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(path, '..')))
+def zipdir(path, ziph):
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(path, '..')))
 
-        mod_name = 'NoGunfireSounds'
-        mod_version = get_mod_version()
+mod_name = 'GunfireReplacer'
+mod_version = get_mod_version()
 
-        zipf = zipfile.ZipFile(f'{mod_name}_{mod_version}.zip', 'w', zipfile.ZIP_DEFLATED)
-        zipdir(mod_name, zipf)
-        zipf.close()
-        "
+zipf = zipfile.ZipFile(f'{mod_name}_{mod_version}.zip', 'w', zipfile.ZIP_DEFLATED)
+zipdir(mod_name, zipf)
+zipf.close()
+"
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: NoGunfireSounds
-        path: NoGunfireSounds_*.zip
+        name: GunfireReplacer
+        path: GunfireReplacer_*.zip
