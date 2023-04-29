@@ -22,6 +22,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install zipfile36
 
+    - name: Get mod version
+      run: |
+        mod_version=$(cat GunfireReplacer/info.json | python -c "import sys, json; print(json.load(sys.stdin)['version'])")
+        echo "MOD_VERSION=$mod_version" >> $GITHUB_ENV
+
     - name: Package mod
       run: |
         python -c "
@@ -40,7 +45,7 @@ jobs:
                     ziph.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(path, '..')))
 
         mod_name = 'GunfireReplacer'
-        mod_version = get_mod_version()
+        mod_version = os.environ['MOD_VERSION']
         mod_directory = f'{mod_name}_{mod_version}'
 
         os.rename(mod_name, mod_directory)
@@ -56,4 +61,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: GunfireReplacer
-        path: GunfireReplacer_*.zip
+        path: GunfireReplacer_${{ env.MOD_VERSION }}.zip
