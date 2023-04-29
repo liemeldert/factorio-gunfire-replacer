@@ -53,12 +53,10 @@ jobs:
         zipf = zipfile.ZipFile(f'{mod_directory}.zip', 'w', zipfile.ZIP_DEFLATED)
         zipdir(mod_directory, zipf)
         zipf.close()
-
-        os.rename(mod_directory, mod_name)
         "
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: GunfireReplacer
+        name: GunfireReplacer_${{ env.MOD_VERSION }}
         path: GunfireReplacer_${{ env.MOD_VERSION }}.zip
