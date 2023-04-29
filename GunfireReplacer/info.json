@@ -4,6 +4,7 @@
     "title": "Gunfire Sound Replacer",
     "author": "Lemurhino",
     "contact": "fcm@pexl.pw",
+    "description": "Replaces gunfire noise in factorio with any other ogg vorbis of your choice and allows volume adjustment.",
     "website": "https://github.com/liemeldert/factorio-gunfire-replacer",
     "factorio_version": "1.1",
     "dependencies": ["base >= 1.1.0"]

@@ -41,10 +41,15 @@ jobs:
 
         mod_name = 'GunfireReplacer'
         mod_version = get_mod_version()
+        mod_directory = f'{mod_name}_{mod_version}'
 
-        zipf = zipfile.ZipFile(f'{mod_name}_{mod_version}.zip', 'w', zipfile.ZIP_DEFLATED)
-        zipdir(mod_name, zipf)
+        os.rename(mod_name, mod_directory)
+
+        zipf = zipfile.ZipFile(f'{mod_directory}.zip', 'w', zipfile.ZIP_DEFLATED)
+        zipdir(mod_directory, zipf)
         zipf.close()
+
+        os.rename(mod_directory, mod_name)
         "
     - name: Upload artifact
       uses: actions/upload-artifact@v2
