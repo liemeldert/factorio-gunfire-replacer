@@ -51,6 +51,11 @@ jobs:
 
         os.rename(mod_directory, mod_name)
         "
+    - name: Rename zip file
+      run: |
+        mod_version=$(cat GunfireReplacer/info.json | python -c "import sys, json; print(json.load(sys.stdin)['version'])")
+        mv GunfireReplacer.zip GunfireReplacer_${mod_version}.zip
+
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
