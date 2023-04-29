@@ -1,3 +1,12 @@
+local function update_turret_sound(sound_path, sound_volume)
+    for _, turret in pairs(game.forces.player.recipes) do
+        if turret.attack_parameters and turret.attack_parameters.sound then
+            turret.attack_parameters.sound.filename = sound_path
+            turret.attack_parameters.sound.volume = sound_volume
+        end
+    end
+end
+
 local function update_gunfire_sound(sound_path, sound_volume)
     for _, gun in pairs(game.forces.player.recipes) do
         if gun.attack_parameters and gun.attack_parameters.sound then
@@ -5,6 +14,7 @@ local function update_gunfire_sound(sound_path, sound_volume)
             gun.attack_parameters.sound.volume = sound_volume
         end
     end
+    update_turret_sound(sound_path, sound_volume)
 end
 
 script.on_event(defines.events.on_runtime_mod_setting_changed, function(event)
