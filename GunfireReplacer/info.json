@@ -1,0 +1,11 @@
+{
+    "name": "GunfireReplacer",
+    "version": "0.1.0",
+    "title": "Gunfire Sound Replacer",
+    "author": "Lemurhino",
+    "contact": "fcm@pexl.pw",
+    "website": "https://github.com/liemeldert/factorio-gunfire-replacer",
+    "factorio_version": "1.1",
+    "dependencies": ["base >= 1.1.0"]
+  }
+  
